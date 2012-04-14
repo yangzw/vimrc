@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/host/codes/acm1062_.c'
+let g:netrw_dirhist_2='/home/ya'
+let g:netrw_dirhist_3='/home/ya/打字'
+let g:netrw_dirhist_4='/home/ya'
+let g:netrw_dirhist_5='/host/codes'
+let g:netrw_dirhist_6='/host/codes/experiment2'
+let g:netrw_dirhist_7='/home/ya'
+let g:netrw_dirhist_8='/home/ya/.vim'
+let g:netrw_dirhist_9='/home/ya/音乐'
