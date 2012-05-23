@@ -56,3 +56,12 @@ set encoding=prc
  exec "!g++ % -o %<"
  exec "! ./%<"
  endfunc
+
+function! QfMakeConv()
+	let qflist = getqflist()
+	for i in qflist
+		let i.text = iconv(i.text,"utf-8","cp936")
+	endfor
+	call setqflist(qflist)
+endfunction
+au QuickfixCmdPost make call QfMakeConv()
