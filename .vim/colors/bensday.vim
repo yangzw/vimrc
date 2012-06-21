@@ -16,7 +16,7 @@ endif
 
 let colors_name = "bensday"
 
-hi Normal ctermbg=DarkGrey ctermfg=White guifg=White guibg=grey15
+hi Normal ctermbg=none  ctermfg=White guifg=White guibg=grey15
 
 " Groups used in the 'highlight' and 'guicursor' options default value.
 hi ErrorMsg term=standout ctermbg=DarkRed ctermfg=White guibg=Red guifg=White
@@ -36,7 +36,7 @@ hi LineNr term=underline ctermfg=green guibg=grey10 guifg=#509050 gui=bold
 hi MoreMsg term=bold ctermfg=LightGreen gui=bold guifg=SeaGreen
 hi NonText term=bold ctermfg=LightBlue gui=bold guifg=LightBlue guibg=grey30
 hi Question term=standout ctermfg=LightGreen gui=bold guifg=Green
-hi Search term=reverse ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black
+hi Search term=reverse ctermbg=Yellow ctermfg=Black guibg=Yellow guifg=Black 
 hi SpecialKey term=bold ctermfg=LightBlue guifg=Cyan
 hi Title term=bold ctermfg=LightMagenta gui=bold guifg=Magenta
 hi WarningMsg term=standout ctermfg=LightRed guifg=Red
