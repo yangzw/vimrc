@@ -1,0 +1,96 @@
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
+
+set diffexpr=MyDiff()
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
+
+"显示行号
+set number
+
+" 设置gvim启动窗口的位置，以及大小   
+winpos 100 50  
+set lines=35 columns=100
+
+
+"括号自动补全
+:inoremap ( ()<ESC>i
+:inoremap ) <c-r>=ClosePair(')')<CR>
+:inoremap { {}<ESC>i
+:inoremap } <c-r>=ClosePair('}')<CR>
+:inoremap [ []<ESC>i
+:inoremap ] <c-r>=ClosePair(']')<CR>
+
+"中文乱码问题
+set fileencodings=utf-8,gb2312,gbk,gb18030
+set termencoding=utf-8
+set encoding=prc
+
+"语法高亮
+syntax enable
+syntax on
+
+colorscheme torte 
+
+"设置为帮助语言为中文
+set helplang=cn
+
+"自动补全
+set nocompatible
+filetype plugin on 
+filetype plugin indent on
+set completeopt=longest,menu
+"C++的代码自动补全
+map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+"让当前不被编辑的文件的方法列表自动折叠起来 
+let Tlist_File_Fold_Auto_Close=1
+" 如果 taglist 窗口是最后一个窗口，则退出 vim
+let Tlist_Exit_OnlyWindow = 1
+"显示taglist菜单
+let Tlist_Show_Menu=1
+
+
+let g:winManagerWindowLayout="FileExplorer,BufExplorer|TagList"
+
+"设置宽度
+let g:winManagerWidth = 30
+
+nmap wm :WMToggle<cr>
+set cscopequickfix=s-,c-,d-,i-,e-
+
+" 打开文件时光标自动到上次退出该文件时的光标所在位置
+autocmd BufReadPost * if line("'\"") && line("'\"") <= line("$") | exe "normal`\"" | endif
+
+if has("win32")
+    set guifont=Nimbus_Mono_l:h15:cANSI
+    "set guifontwide=楷体_GB2312:h10
+    "set guifontwide=YaHei Consolas Hybrid:h10
+    au GUIEnter * simalt ~x   " 窗口最大化
+endif
+
+" 设定不生成备份文件
+set nobackup
+
